@@ -10,7 +10,7 @@ pipeline {
     stages {
       stage('Semgrep-Scan') {
         steps {
-            semgrep()
+            semgrepFullScan()
       }
     }
   }

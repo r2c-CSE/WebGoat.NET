@@ -7,6 +7,12 @@ pipeline {
       SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
     }
     stages {
+      stage('Print-Vars') {
+        steps {
+          echo "The build number is ${env.BUILD_NUMBER}"
+          echo "The build number is ${env.GIT_BRANCH}"
+        }
+      }
       stage('Semgrep-Scan-Full-Scan') {
         when {
           branch 'master'

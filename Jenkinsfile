@@ -16,15 +16,16 @@ pipeline {
         }
       }
       stage('Semgrep-Scan') {
-          //steps {
-            if (env.GIT_BRANCH == 'origin/master') {
-              echo 'Push!'
-              semgrepFullScan()
+        steps {
+                script {
+                    if (env.BRANCH_NAME == 'origin/master') {
+                        echo 'Hello from main branch'
+                        semgrepFullScan()
+                    }  else {
+                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+                    }
+                }
             }
-            else {
-              echo 'Pull Request!'
-            }
-        //}
-      }
+        }
     }
 }

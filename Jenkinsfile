@@ -8,11 +8,23 @@ pipeline {
 
     }
     stages {
-      stage('Semgrep-Scan') {
+      stage('Semgrep-Scan-Full-Scan') {
+        when {
+          branch 'origin/master'
+        }
         steps {
-            echo "The build number is ${env.GIT_BRANCH}" 
-            semgrepFullScan()
-      }
+          echo 'Push!'
+          semgrepFullScan()
+       }
+    }
+    stages {
+      stage('Semgrep-Scan-Pull-Request-Scan') {
+        when {
+          changeRequest target: 'origin/master'
+        }
+        steps {
+          echo 'Pull Request!'
+       }
     }
   }
 }

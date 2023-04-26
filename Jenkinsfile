@@ -15,21 +15,15 @@ pipeline {
           sh 'printenv'
         }
       }
-      stage('Semgrep-Scan-Full-Scan') {
-        if (env.GIT_BRANCH == 'origin/master') {
+      stage('Semgrep-Scan') {
           steps {
-            echo 'Push!'
-            semgrepFullScan()
-          }
-        }
-      }
-
-      stage('Semgrep-Scan-Pull-Request-Scan') {
-        when {
-          changeRequest target: 'master'
-        }
-        steps {
-          echo 'Pull Request!'
+            if (env.GIT_BRANCH == 'origin/master') {
+              echo 'Push!'
+              semgrepFullScan()
+            }
+            else {
+              echo 'Pull Request!'
+            }
         }
       }
     }

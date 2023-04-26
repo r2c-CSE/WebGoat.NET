@@ -12,7 +12,7 @@ pipeline {
           echo "The build number is ${env.BUILD_NUMBER}"
           echo "The git branch is ${env.GIT_BRANCH}"
           echo "The branch name is ${env.BRANCH_NAME}"
-          echo "sh 'printenv'"
+          sh 'printenv'
         }
       }
       stage('Semgrep-Scan-Full-Scan') {

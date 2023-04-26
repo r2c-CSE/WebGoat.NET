@@ -9,6 +9,7 @@ pipeline {
     }
     stages {
       stage('Semgrep-Scan-Full-Scan') {
+        echo 'Branch: ${env.GIT_BRANCH}'
         when {
           branch 'origin/master'
         }

@@ -9,19 +9,20 @@ pipeline {
     }
     stages {
       stage('Semgrep-Scan-Full-Scan') {
-        echo 'Branch: ${env.GIT_BRANCH}'
+        
         when {
-          branch 'origin/master'
+          branch 'master'
         }
         steps {
           echo 'Push!'
+          echo 'Branch: ${env.GIT_BRANCH}'
           semgrepFullScan()
         }
       }
 
       stage('Semgrep-Scan-Pull-Request-Scan') {
         when {
-          changeRequest target: 'origin/master'
+          changeRequest target: 'master'
         }
         steps {
           echo 'Pull Request!'

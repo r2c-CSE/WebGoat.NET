@@ -15,16 +15,16 @@ pipeline {
         steps {
           echo 'Push!'
           semgrepFullScan()
-       }
-    }
-    stages {
+        }
+      }
+
       stage('Semgrep-Scan-Pull-Request-Scan') {
         when {
           changeRequest target: 'origin/master'
         }
         steps {
           echo 'Pull Request!'
-       }
+        }
+      }
     }
-  }
 }

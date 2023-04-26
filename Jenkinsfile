@@ -10,6 +10,7 @@ pipeline {
     stages {
       stage('Semgrep-Scan') {
         steps {
+            echo "The build number is ${env.GIT_BRANCH}" 
             semgrepFullScan()
       }
     }

@@ -16,7 +16,7 @@ pipeline {
         }
       }
       stage('Semgrep-Scan') {
-          steps {
+          //steps {
             if (env.GIT_BRANCH == 'origin/master') {
               echo 'Push!'
               semgrepFullScan()
@@ -24,7 +24,7 @@ pipeline {
             else {
               echo 'Pull Request!'
             }
-        }
+        //}
       }
     }
 }

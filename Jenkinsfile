@@ -10,12 +10,14 @@ pipeline {
       stage('Print-Vars') {
         steps {
           echo "The build number is ${env.BUILD_NUMBER}"
-          echo "The build number is ${env.GIT_BRANCH}"
+          echo "The git branch is ${env.GIT_BRANCH}"
+          echo "The branch name is ${env.BRANCH_NAME}"
+          echo "sh 'printenv'"
         }
       }
       stage('Semgrep-Scan-Full-Scan') {
         when {
-          branch 'master'
+          branch "origin/master"
         }
         steps {
           echo 'Push!'

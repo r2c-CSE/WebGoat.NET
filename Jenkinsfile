@@ -16,12 +16,11 @@ pipeline {
         }
       }
       stage('Semgrep-Scan-Full-Scan') {
-        when {
-          branch "origin/master"
-        }
-        steps {
-          echo 'Push!'
-          semgrepFullScan()
+        if (env.GIT_BRANCH == 'origin/master') {
+          steps {
+            echo 'Push!'
+            semgrepFullScan()
+          }
         }
       }
 

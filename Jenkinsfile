@@ -6,7 +6,7 @@ pipeline {
       // The following variable is required for a Semgrep Cloud Platform-connected scan:
       SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       SEMGREP_BASELINE_REF = "origin/master"
-      SEMGREP_BRANCH = "TEST6"
+      SEMGREP_BRANCH = "${BRANCH_NAME}"
       SEMGREP_COMMIT = "${GIT_COMMIT}"
       SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*)$/, '$1')
       SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
@@ -18,7 +18,7 @@ pipeline {
           sh 'printenv'
         }
       }
-      /*stage('Semgrep-Full-Scan') {
+      stage('Semgrep-Full-Scan') {
         steps {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
@@ -26,11 +26,13 @@ pipeline {
                         semgrepFullScan()
                     }  else {
                         sh "echo 'Hello from ${env.GIT_BRANCH} branch!'"
+                        sh "git fetch origin +ref/heads/*:refs/remotes/origin/*"
+                        semgrepFullScanWithAllEnvVars()
                     }
                 }
             }
-        }*/
-        stage("Semgrep-PR-scan") {
+        }
+        /*stage("Semgrep-PR-scan") {
             steps {
                     script {
                         sh "git --version"
@@ -42,6 +44,6 @@ pipeline {
                         semgrepFullScanWithAllEnvVars()
                     }
             }
-        }
+        }*/
     }
 }

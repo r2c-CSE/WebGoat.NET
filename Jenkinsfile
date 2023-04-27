@@ -18,7 +18,7 @@ pipeline {
           sh 'printenv'
         }
       }
-      stage('Semgrep-Full-Scan') {
+      stage('Semgrep-Scan') {
         steps {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {

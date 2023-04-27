@@ -7,7 +7,7 @@ pipeline {
       SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       SEMGREP_BASELINE_REF = "origin/master"
       SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
-      //SEMGREP_BRANCH = "${params.branch}"
+      SEMGREP_BRANCH = "FEATURE_33"
       SEMGREP_JOB_URL = "${BUILD_URL}"
       SEMGREP_COMMIT = "${GIT_COMMIT}"
       //SEMGREP_PR_ID = "${params.change_id}"

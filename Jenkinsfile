@@ -18,7 +18,7 @@ pipeline {
           sh 'printenv'
         }
       }
-      stage('Semgrep-Full-Scan') {
+      /*stage('Semgrep-Full-Scan') {
         steps {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
@@ -29,7 +29,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         stage("Semgrep-PR-scan") {
             steps {
                     script {

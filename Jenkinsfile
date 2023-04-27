@@ -15,7 +15,7 @@ pipeline {
     stages {
       stage('Print-Vars') {
         steps {
-          //sh 'printenv'
+          sh 'printenv'
         }
       }
       stage('Semgrep-Full-Scan') {

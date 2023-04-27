@@ -6,12 +6,11 @@ pipeline {
       // The following variable is required for a Semgrep Cloud Platform-connected scan:
       SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       SEMGREP_BASELINE_REF = "origin/master"
-      SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
-      SEMGREP_BRANCH = "FEATURE_33"
-      SEMGREP_JOB_URL = "${BUILD_URL}"
+      SEMGREP_BRANCH = "TEST6"
       SEMGREP_COMMIT = "${GIT_COMMIT}"
-      //SEMGREP_PR_ID = "${params.change_id}"
-      //SEMGREP_REPO_NAME = "${params.repo_name}"
+      SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*)$/, '$1')
+      SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
+      SEMGREP_PR_ID = "${env.CHANGE_ID}"
     }
     stages {
       stage('Print-Vars') {

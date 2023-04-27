@@ -18,7 +18,7 @@ pipeline {
           sh 'printenv'
         }
       }
-      stage('Semgrep-Full-Scan') {
+      /*stage('Semgrep-Full-Scan') {
         steps {
                 script {
                     if (env.GIT_BRANCH == 'origin/master') {
@@ -29,13 +29,13 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
         stage("Semgrep-Dbox-scan") {
             steps {
                     script {
                         sh "git --version"
                         sh "echo ${SEMGREP_PR_ID}"
-                        sh "git checkout trunk"
+                        sh "git checkout ${SEMGREP_BASELINE_REF}"
                         sh "git rev-parse HEAD"
                         sh "git checkout ${SEMGREP_BRANCH}"
                         // Debug here by checking if all env vars are set - sh 'printenv | grep SEMGREP'

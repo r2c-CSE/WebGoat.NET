@@ -10,7 +10,7 @@ pipeline {
       SEMGREP_COMMIT = "${GIT_COMMIT}"
       SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*)$/, '$1')
       SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
-      SEMGREP_PR_ID = "${env.CHANGE_ID}"
+      SEMGREP_PR_ID = "13af5fb8f275255d5e01fddc9b9c8f331991b5e5"
     }
     stages {
       stage('Print-Vars') {
@@ -38,9 +38,6 @@ pipeline {
                         sh "git checkout ${SEMGREP_BASELINE_REF}"
                         sh "git rev-parse HEAD"
                         sh "git checkout ${SEMGREP_BRANCH}"
-                        // Debug here by checking if all env vars are set - sh 'printenv | grep SEMGREP'
-                        // This is so that we fail-open except when exit status code is 1 for finding based result
-                        //sh '$HOME/.local/bin/semgrep ci --baseline-commit=$(git merge-base trunk HEAD) || [ $? != 1 ]'
                         semgrepFullScanWithAllEnvVars()
                     }
             }

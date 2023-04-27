@@ -21,11 +21,11 @@ pipeline {
       stage('Semgrep-Scan') {
         steps {
                 script {
-                    if (env.GIT_BRANCH == 'origin/master') {
-                        echo 'Hello from master branch'
+                    if (env.GIT_BRANCH == 'master') {
+                        echo "Hello from ${env.GIT_BRANCH} branch"
                         semgrepFullScan()
                     }  else {
-                        sh "echo 'Hello from ${env.GIT_BRANCH} branch!'"
+                        sh "echo 'Hello from ${env.GIT_BRANCH} branch"
                         sh "git fetch origin +ref/heads/*:refs/remotes/origin/*" //Is it needed?
                         semgrepPullRequestScan()
                     }

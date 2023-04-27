@@ -7,10 +7,10 @@ pipeline {
       SEMGREP_APP_TOKEN = credentials('SEMGREP_APP_TOKEN')
       SEMGREP_BASELINE_REF = "origin/master"
       SEMGREP_BRANCH = "TEST6"
-      SEMGREP_COMMIT = env.GIT_COMMIT
+      SEMGREP_COMMIT = "${GIT_COMMIT}"
       SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*)$/, '$1')
       SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
-      SEMGREP_PR_ID = env.BUILD_ID
+      SEMGREP_PR_ID = "${env.CHANGE_ID}"
     }
     stages {
       stage('Print-Vars') {

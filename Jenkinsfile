@@ -26,24 +26,11 @@ pipeline {
                         semgrepFullScan()
                     }  else {
                         sh "echo 'Hello from ${env.GIT_BRANCH} branch!'"
-                        sh "git fetch origin +ref/heads/*:refs/remotes/origin/*"
-                        semgrepFullScanWithAllEnvVars()
+                        sh "git fetch origin +ref/heads/*:refs/remotes/origin/*" //Is it needed?
+                        semgrepPullRequestScan()
                     }
                 }
             }
         }
-        /*stage("Semgrep-PR-scan") {
-            steps {
-                    script {
-                        sh "git --version"
-                        sh "echo ${SEMGREP_PR_ID}"
-                        //sh "git checkout ${SEMGREP_BASELINE_REF}"
-                        //sh "git rev-parse HEAD"
-                        //sh "git checkout ${SEMGREP_BRANCH}"
-                        sh "git fetch origin +ref/heads/*:refs/remotes/origin/*"
-                        semgrepFullScanWithAllEnvVars()
-                    }
-            }
-        }*/
     }
 }

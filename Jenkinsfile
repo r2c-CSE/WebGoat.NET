@@ -8,7 +8,7 @@ pipeline {
       SEMGREP_BASELINE_REF = "origin/master"
       SEMGREP_BRANCH = "${BRANCH_NAME}"
       SEMGREP_COMMIT = "${GIT_COMMIT}"
-      SEMGREP_REPO_NAME = env.GIT_URL.replaceFirst(/^https:\/\/github.com\/(.*)$/, '$1')
+      SEMGREP_REPO_NAME = "from-jenkins/WebGoat.Net"
       SEMGREP_REPO_URL = env.GIT_URL.replaceFirst(/^(.*).git$/,'$1')
       SEMGREP_PR_ID = "${env.CHANGE_ID}"
     }
